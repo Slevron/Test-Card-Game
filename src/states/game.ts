@@ -51,8 +51,8 @@ export default class Game extends Phaser.State {
   update() { }
 
   private initBtn(options, title, y, click){
-    options.title = 'Drop Card';
-    options.y = 50;
+    options.title = title;
+    options.y = y;
     const button = new Button(options, this.game);
     const buttonTransform = button.create();
     buttonTransform.events.onInputDown.add(click, this);

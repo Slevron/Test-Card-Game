@@ -7,8 +7,7 @@ import * as Phaser from 'phaser';
 import Config from './config';
 import Game from './states/game';
 import Options from './states/options';
-import MenuGeneral from './scripts/menu/menuGeneral';
-
+import Menu from './states/menu';
 
 class SimpleGame {
   game: Phaser.Game;
@@ -18,20 +17,17 @@ class SimpleGame {
     this.game = new Phaser.Game(Config.width, Config.height, Phaser.AUTO, "content", this);
     this.game.state.add('Game', Game);
     this.game.state.add('Options', Options);
+    this.game.state.add('Menu', Menu);
   }
 
   preload() { }
 
   create() {
-    const options = {
-      x: 0,
-      y: -30,
-    };
-    new MenuGeneral(options, this.game);
+    this.game.state.start('Menu');
   }
 
   update() {
-    this.game.input.update();
+
   }
 }
 

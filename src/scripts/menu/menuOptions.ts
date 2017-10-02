@@ -1,6 +1,7 @@
 import MenuGeneral from './menuGeneral';
 import ButtonOptionsColors from '../button/buttonOptionsColors';
 import ButtonArrow from '../button/buttonArrow';
+import Button from '../button/button';
 
 export default class MenuOptions extends MenuGeneral {
   static nbCards: number = 0;
@@ -18,6 +19,20 @@ export default class MenuOptions extends MenuGeneral {
   create() {
     this.initColors();
     this.initNbCards();
+    const options = {
+      color: '#ff0044',
+      title: 'Go Menu',
+      size: '20px Helvetica',
+      x: 60,
+      y: 25,
+    }
+    const button = new Button(options, this.game);
+    const buttonTransform = button.create();
+    buttonTransform.events.onInputDown.add(this.returnState, this);
+  }
+
+  private returnState() {
+    this.game.state.start('Menu');
   }
 
   private initColors() {
